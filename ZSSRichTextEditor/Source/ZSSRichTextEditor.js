@@ -39,7 +39,7 @@ zss_editor.updateScrollOffset = false;
 zss_editor.init = function() {
     
     $('#zss_editor_content').on('touchend', function(e) {
-                                zss_editor.enabledEditingItems(e);
+//                                zss_editor.enabledEditingItems(e);
                                 var clicked = $(e.target);
                                 if (!clicked.hasClass('zs_active')) {
                                 $('img').removeClass('zs_active');
@@ -141,7 +141,6 @@ zss_editor.getCaretYPosition = function() {
     //sel.collapseToStart();
     var range = sel.getRangeAt(0);
     var span = document.createElement('span');// something happening here preventing selection of elements
-    range.collapse(false);
     range.insertNode(span);
     var topPosition = span.offsetTop;
     span.parentNode.removeChild(span);
@@ -266,8 +265,8 @@ zss_editor.setParagraph = function() {
     var t = current_selection.prop("tagName").toLowerCase();
     var is_paragraph = (t == 'p');
     if (is_paragraph) {
-        var c = current_selection.html();
-        current_selection.replaceWith(c);
+//        var c = current_selection.html();
+//        current_selection.replaceWith(c);
     } else {
         document.execCommand('formatBlock', false, '<p>');
     }
@@ -439,9 +438,9 @@ zss_editor.prepareInsert = function() {
     zss_editor.backuprange();
 }
 
-zss_editor.insertImage = function(url, alt) {
+zss_editor.insertImage = function(url, alt, width) {
     zss_editor.restorerange();
-    var html = '<img src="'+url+'" alt="'+alt+'" />';
+    var html = '<img width=' + width + 'px src="'+url+'" alt="'+alt+'" />';
     zss_editor.insertHTML(html);
     zss_editor.enabledEditingItems();
 }
